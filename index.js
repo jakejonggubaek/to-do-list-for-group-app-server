@@ -18,11 +18,17 @@ const RoomModel = require('./models/ToDo');
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI,
-    {
-        useNewUrlParser: true,
-    }
-);
+const MongoClient = require("mongodb").MongoClient;
+const client = await new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true });
+client.connect();
+mongoose.connection.once('open', () => { console.log('MongoDB Connected'); });
+mongoose.connection.on('error', (err) => { console.log('MongoDB connection error: ', err); });
+
+// mongoose.connect(process.env.MONGODB_URI,
+//     {
+//         useNewUrlParser: true,
+//     }
+// );
 
 app.post('/insert', async(req, res) => {
     const id = mongoose.Types.ObjectId();
