@@ -11,7 +11,7 @@ const RoomModel = require('./models/ToDo');
 
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://jakejonggubaek:Cdspace1!@cluster0.09veq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://jakejonggubaek:Cdspace1!@cluster0.09veq.mongodb.net/toDo?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
     }
