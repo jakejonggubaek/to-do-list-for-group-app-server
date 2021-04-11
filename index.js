@@ -21,8 +21,13 @@ app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI,
     {
         useNewUrlParser: true,
+        useUnifiedTopology: true
     }
 );
+
+mongoose.connection.on('connected', () => {
+    console.log('mongoose is connected');
+});
 
 app.post('/insert', async(req, res) => {
     const id = mongoose.Types.ObjectId();
